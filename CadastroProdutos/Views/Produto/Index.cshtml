@@ -1,6 +1,10 @@
-﻿<h1>Lista De Produtos</h1>
+﻿@model IEnumerable<CadastroProdutos.Models.Produto>
 
-<a href="/Produto/Create" class="btn">+ Novo Produto</a>
+<h1>Lista De Produtos</h1>
+
+<br />
+
+<a href="/Produto/Create" class="btn" style="background-color: #007bff">+ Novo Produto</a>
 
 <table>
     <thead>
@@ -14,21 +18,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Teclado Games</td>
-            <td>Periféricos</td>
-            <td>R$ 120,00</td>
-            <td>10</td>
-            <td><a href="/Produto/Edit/1" class="btn">Editar</a></td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>HD 1TB</td>
-            <td>Armazenamento</td>
-            <td>R$ 250,00</td>
-            <td>5</td>
-            <td><a href="/Produto/Edit/2" class="btn">Editar</a></td>
-        </tr>
+        @foreach (var produto in Model)
+        {
+            <tr>
+                <th scope="row">@produto.ProdutoId</th>
+                <td>@produto.Nome</td>
+                <td>@produto.Categoria</td>
+                <td>@produto.Preco.ToString("C")</td>
+                <td>@produto.Quantidade</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = produto.ProdutoId })" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="@Url.Action("Delete", new { id = produto.ProdutoId })" class="btn btn-danger btn-sm" style="background-color: #dc3545">Excluir</a>
+                </td>
+            </tr>
+
+
+        }
     </tbody>
 </table>

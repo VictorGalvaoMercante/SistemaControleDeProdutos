@@ -1,0 +1,12 @@
+﻿@model CadastroProdutos.Models.Produto
+
+<br />
+<br />
+<h1 class="text-center">Confirmação de Exclusão</h1>
+
+<form asp-action="Delete" class="text-center">
+<p>Tem certeza que deseja excluir o produto: <strong>@Model.Nome</strong>?</p>
+    <input type="hidden" asp-for="ProdutoId" />
+    <button type="submit" class="btn ">Sim, exluir</button>
+    <a class="btn" style="background-color: gray; margin-left: 10px;" asp-controller="Produto" asp-action="Index">Cancelar</a>
+</form>
